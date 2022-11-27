@@ -1,4 +1,4 @@
-package Prj_MVC_board.main;
+package Prj_MVC_board.main.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,5 +11,12 @@ public class HomeController {
     public String showMain() {
         return "안녕하세요.";
     }
+
+    @RequestMapping("usr/home/main1")
+    @ResponseBody
+    public String showMain1() {
+        return "드디어 성공..";
+    }
+
 
 }
