@@ -1,4 +1,4 @@
-package Prj_MVC_board;
+package com.MVC_board;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
