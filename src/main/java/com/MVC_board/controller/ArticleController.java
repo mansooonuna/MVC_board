@@ -14,13 +14,12 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
     private Article article;
-    /**
-     * 액션 메서드
-     */
+
+
     @RequestMapping("/usr/article/list")
     @ResponseBody
     public List<Article> showList() {
-        return articleService.articles;
+        return articleService.getArticles();
     }
 
     @RequestMapping("/usr/article/doAdd")
