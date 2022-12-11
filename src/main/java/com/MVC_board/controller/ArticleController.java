@@ -24,7 +24,7 @@ public class ArticleController {
         id++;
     }
 
-    private Article getIdOfArticle(int id) {
+    private Article getArticle(int id) {
         for (Article article : articles) {
             if (article.getId() == id) {
                 return article;
@@ -33,11 +33,15 @@ public class ArticleController {
         return null;
     }
 
-    private String deleteArticle(int id) {
-        article = getIdOfArticle(id);
+    private void deleteArticle(int id) {
+        article = getArticle(id);
         articles.remove(article);
+    }
 
-        return id + "번 게시물이 삭제되었습니다.";
+    private void modifyArticle(int id, String title, String body) {
+        article = getArticle(id);
+        article.setTitle(title);
+        article.setBody(body);
     }
 
 
@@ -60,16 +64,30 @@ public class ArticleController {
     @RequestMapping("usr/article/delete")
     @ResponseBody
     public String delete(int id) {
-        article = getIdOfArticle(id);
+        article = getArticle(id);
 
         if (article == null) {
             return "게시물이 존재하지 않습니다.";
         }
 
         deleteArticle(id);
-
         return id + "번 게시물이 삭제되었습니다.";
     }
+
+
+    @RequestMapping("usr/article/modify")
+    @ResponseBody
+    public String modify(int id, String title, String body) {
+        article = getArticle(id);
+
+        if (article == null) {
+            return "게시물이 존재하지 않습니다.";
+        }
+
+        modifyArticle(id, title, body);
+        return id + "번 게시물이 수정되었습니다.";
+    }
+    
 
 
 }
