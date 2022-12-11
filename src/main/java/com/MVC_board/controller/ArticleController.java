@@ -87,7 +87,18 @@ public class ArticleController {
         modifyArticle(id, title, body);
         return id + "번 게시물이 수정되었습니다.";
     }
-    
+
+    @RequestMapping("usr/article/detail")
+    @ResponseBody
+    public Object showDetail(int id) {
+        article = getArticle(id);
+
+        if (article == null) {
+            return "게시물이 존재하지 않습니다.";
+        }
+
+        return article;
+    }
 
 
 }
