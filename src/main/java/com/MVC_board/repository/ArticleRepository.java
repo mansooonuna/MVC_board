@@ -24,7 +24,21 @@ public interface ArticleRepository {
     @Delete("DELETE FROM article WHERE id = #{id}")
     public void deleteArticle(@Param("id") int id);
 
-    @Update("UPDATE article SET title = #{title}, body = #{body}, updateDate = NOW() WHERE id = #{id}")
+    @Update("""
+            <script>
+            UPDATE article
+            <set>
+                <if test = 'title != null'>
+                    title = #{title},
+                </if>
+                <if test = 'body != null'>
+                    body = #{body},
+                </if>
+                updateDate = NOW()
+            </set>
+            WHERE id = #{id}
+            </script>
+            """)
     public void modifyArticle(@Param("id") int id, @Param("title") String title, @Param("body") String body);
 
 }

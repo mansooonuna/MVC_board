@@ -1,5 +1,7 @@
 # DB 생성
+DROP DATABASE IF EXISTS mvc_db;
 CREATE DATABASE mvc_db;
+USE mvc_db;
 
 # article table 생성
 CREATE TABLE article (
@@ -13,3 +15,4 @@ CREATE TABLE article (
 # 테스트 데이터 삽입
 INSERT INTO article(title, BODY, regDate, updateDate)
 VALUES ("test title", "test body", NOW(), NOW());
+
