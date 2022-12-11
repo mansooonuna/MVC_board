@@ -14,6 +14,36 @@ public class ArticleController {
     Article article;
     public int id = 1;
 
+
+    /**
+     * 서비스 메서드
+     */
+    private void writeArticle(String title, String body) {
+        article = new Article(id, title, body);
+        articles.add(article);
+        id++;
+    }
+
+    private Article getIdOfArticle(int id) {
+        for (Article article : articles) {
+            if (article.getId() == id) {
+                return article;
+            }
+        }
+        return null;
+    }
+
+    private String deleteArticle(int id) {
+        article = getIdOfArticle(id);
+        articles.remove(article);
+
+        return id + "번 게시물이 삭제되었습니다.";
+    }
+
+
+    /**
+     * 액션 메서드
+     */
     @RequestMapping("/usr/article/list")
     @ResponseBody
     public List<Article> showList() {
@@ -23,12 +53,23 @@ public class ArticleController {
     @RequestMapping("/usr/article/doAdd")
     @ResponseBody
     public Article doAdd(String title, String body) {
-        article = new Article(id, title, body);
-        articles.add(article);
-        id++;
+        writeArticle(title, body);
         return article;
     }
 
+    @RequestMapping("usr/article/delete")
+    @ResponseBody
+    public String delete(int id) {
+        article = getIdOfArticle(id);
+
+        if (article == null) {
+            return "게시물이 존재하지 않습니다.";
+        }
+
+        deleteArticle(id);
+
+        return id + "번 게시물이 삭제되었습니다.";
+    }
 
 
 }
