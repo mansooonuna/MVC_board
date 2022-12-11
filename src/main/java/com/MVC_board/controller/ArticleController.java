@@ -24,14 +24,14 @@ public class ArticleController {
 
     @RequestMapping("/usr/article/doAdd")
     @ResponseBody
-    public String doAdd(String title, String body) {
+    public String writeArticle(String title, String body) {
         articleService.writeArticle(title, body);
         return "게시물이 등록되었습니다.";
     }
 
     @RequestMapping("usr/article/delete")
     @ResponseBody
-    public String delete(int id) {
+    public String deleteArticle(int id) {
         article = articleService.getArticle(id);
 
         if (article == null) {
@@ -45,9 +45,8 @@ public class ArticleController {
 
     @RequestMapping("usr/article/modify")
     @ResponseBody
-    public String modify(int id, String title, String body) {
+    public String modifyArticle(int id, String title, String body) {
         article = articleService.getArticle(id);
-
         if (article == null) {
             return "게시물이 존재하지 않습니다.";
         }
@@ -64,7 +63,6 @@ public class ArticleController {
         if (article == null) {
             return "게시물이 존재하지 않습니다.";
         }
-
         return article;
     }
 

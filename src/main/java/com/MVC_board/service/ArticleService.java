@@ -16,8 +16,8 @@ public class ArticleService {
         return articleRepository.getArticles();
     }
 
-    public Article writeArticle(String title, String body) {
-        return articleRepository.writeArticle(title, body);
+    public void writeArticle(String title, String body) {
+        articleRepository.writeArticle(title, body);
     }
 
     public Article getArticle(int id) {
@@ -31,7 +31,6 @@ public class ArticleService {
     public void modifyArticle(int id, String title, String body) {
         articleRepository.modifyArticle(id, title, body);
     }
-
 
 
 }

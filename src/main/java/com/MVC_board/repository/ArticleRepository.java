@@ -1,47 +1,30 @@
 package com.MVC_board.repository;
 
 import com.MVC_board.vo.Article;
-import org.springframework.stereotype.Component;
+import org.apache.ibatis.annotations.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Component
-public class ArticleRepository {
-    public List<Article> articles = new ArrayList<>();
-    private Article article;
-    private int id = 1;
+@Mapper
+public interface ArticleRepository {
 
-    public Article getArticle(int id) {
-        for (Article article : articles) {
-            if (article.getId() == id) {
-                return article;
-            }
-        }
-        return null;
-    }
+    @Select("SELECT * FROM article WHERE id = #{id}")
+    public Article getArticle(@Param("id") int id);
 
-    public List<Article> getArticles() {
-        return articles;
-    }
+    @Select("SELECT * FROM article ORDER BY id DESC")
+    public List<Article> getArticles();
 
-    public Article writeArticle(String title, String body) {
-        article = new Article(id, title, body);
-        articles.add(article);
-        id++;
-        return null;
-    }
+    @Insert("""
+            INSERT INTO article (title, body, regDate, updateDate)
+            VALUES (#{title}, #{body}, NOW(), NOW())
+            """)
+    public void writeArticle(@Param("title") String title, @Param("body") String body);
 
-    public void deleteArticle(int id) {
-        article = getArticle(id);
-        articles.remove(article);
-    }
 
-    public void modifyArticle(int id, String title, String body) {
-        article = getArticle(id);
-        article.setTitle(title);
-        article.setBody(body);
-    }
+    @Delete("DELETE FROM article WHERE id = #{id}")
+    public void deleteArticle(@Param("id") int id);
 
+    @Update("UPDATE article SET title = #{title}, body = #{body}, updateDate = NOW() WHERE id = #{id}")
+    public void modifyArticle(@Param("id") int id, @Param("title") String title, @Param("body") String body);
 
 }

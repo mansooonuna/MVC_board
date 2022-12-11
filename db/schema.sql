@@ -1,3 +1,6 @@
+# DB 생성
+CREATE DATABASE mvc_db;
+
 # article table 생성
 CREATE TABLE article (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
