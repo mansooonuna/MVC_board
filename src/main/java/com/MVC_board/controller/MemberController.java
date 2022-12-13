@@ -14,7 +14,11 @@ public class MemberController {
     @RequestMapping("/usr/member/join")
     @ResponseBody
     public String join(String loginId, String loginPw, String name, String nickname, String email, String cellphoneNo) {
+        if (loginId.equals(memberService.getLoginIdOfMember(loginId))) {
+            return "해당 아이디(" + loginId + ")는 이미 존재하는 아이디 입니다.";
+        }
         memberService.join(loginId, loginPw, name, nickname, email, cellphoneNo);
+
         return loginId + "님 회원가입 완료";
     }
 }
