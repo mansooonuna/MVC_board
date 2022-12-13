@@ -15,7 +15,6 @@ public class MemberController {
     @ResponseBody
     public String join(String loginId, String loginPw, String name, String nickname, String email, String cellphoneNo) {
         memberService.join(loginId, loginPw, name, nickname, email, cellphoneNo);
-
-        return "회원가입완료";
+        return loginId + "님 회원가입 완료";
     }
 }
