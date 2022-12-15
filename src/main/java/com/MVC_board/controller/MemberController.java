@@ -18,24 +18,27 @@ public class MemberController {
             return "아이디를 입력해주세요.";
         }
         if (loginPw.isEmpty()) {
-            return  "비밀번호를 입력해주세요.";
+            return "비밀번호를 입력해주세요.";
         }
         if (name.isEmpty()) {
             return "이름을 입력해주세요.";
         }
         if (nickname.isEmpty()) {
-            return  "닉네임을 입력해주세요.";
+            return "닉네임을 입력해주세요.";
         }
         if (email.isEmpty()) {
             return "이메일을 입력해주세요.";
         }
         if (cellphoneNo.isEmpty()) {
-            return  "전화번호를 입력해주세요.";
+            return "전화번호를 입력해주세요.";
         }
 
 
         if (loginId.equals(memberService.getLoginIdOfMember(loginId))) {
             return "해당 아이디(" + loginId + ")는 이미 존재하는 아이디 입니다.";
+        }
+        if (!memberService.getEmailOfMember(email)) {
+            return "이미 사용중인 이메일 입니다.";
         }
 
         memberService.join(loginId, loginPw, name, nickname, email, cellphoneNo);

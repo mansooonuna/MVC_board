@@ -21,4 +21,10 @@ public class MemberService {
     }
 
 
+    public boolean getEmailOfMember(String email) {
+        if (memberRepository.getEmailOfMember(email) >= 1) {
+            return false;
+        }
+        return true;
+    }
 }

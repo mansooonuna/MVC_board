@@ -21,4 +21,10 @@ public interface MemberRepository {
             WHERE loginId = #{loginId}
             """)
     public String getLoginIdOfMember(@Param("loginId") String loginId);
+
+    @Select("""
+            SELECT COUNT(email) FROM member
+            WHERE email = #{email}
+            """)
+    public int getEmailOfMember(String email);
 }
