@@ -15,10 +15,10 @@ public interface ArticleRepository {
     public List<Article> getArticles();
 
     @Insert("""
-            INSERT INTO article (title, body, regDate, updateDate)
-            VALUES (#{title}, #{body}, NOW(), NOW())
+            INSERT INTO article (title, body, regDate, updateDate, loginId)
+            VALUES (#{title}, #{body}, NOW(), NOW(), #{loginId})
             """)
-    public void writeArticle(@Param("title") String title, @Param("body") String body);
+    public void writeArticle(@Param("title") String title, @Param("body") String body, @Param("loginId") String loginId);
 
 
     @Delete("DELETE FROM article WHERE id = #{id}")
