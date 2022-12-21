@@ -16,8 +16,8 @@ public class ArticleService {
         return articleRepository.getArticles();
     }
 
-    public void writeArticle(String title, String body) {
-        articleRepository.writeArticle(title, body);
+    public void writeArticle(String title, String body, String loginId) {
+        articleRepository.writeArticle(title, body, loginId);
     }
 
     public Article getArticle(int id) {
